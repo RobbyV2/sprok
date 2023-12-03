@@ -3,13 +3,17 @@ const session = require('express-session');
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const bodyParser = require('body-parser');
 const cheerio = require('cheerio');
-
 const app = express();
+require('dotenv').config();
+
+const username = process.env.USER;
+const password = process.env.PASS;
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 app.use(session({
-  secret: '1324',
+  secret: password,
   resave: false,
   saveUninitialized: true,
 }));
@@ -19,7 +23,7 @@ app.get('/', (req, res) => {
   });
 
 app.post('/login.html', (req, res) => {
-  if (req.body.username === '1324' && req.body.password === '1324') {
+  if (req.body.username === username && req.body.password === password) {
     req.session.loggedIn = true;
     res.redirect('/spork/');
   } else {
