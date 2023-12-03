@@ -1,0 +1,19 @@
+{
+  "name": "sprok",
+  "version": "1.0.0",
+  "description": "Intermediary layer between a website and a fake spork interface.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "RobbyV2",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cheerio": "^1.0.0-rc.12",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "http-proxy": "^1.18.1",
+    "http-proxy-middleware": "^2.0.6"
+  }
+}
