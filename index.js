@@ -63,7 +63,7 @@ app.use((req, res, next) => {
       var body = Buffer.concat(chunks).toString();
       const $ = cheerio.load(body);
 
-      $('title').text('SPORKforYou');
+      $('title').text('SPORKforMEEEEE');
 
       $('link[rel="icon"]').attr('href', 'https://app.spork.school/favicon.ico');
 
@@ -74,7 +74,7 @@ app.use((req, res, next) => {
         document.addEventListener('keydown', function(e) {
           if (e.ctrlKey) {
               e.preventDefault();
-              window.location.href = window.location.pathname === '/' ? '/spork/' : '/';
+              window.location.href = window.location.pathname === '/' ? '/hitublud/' : '/';
           }
       });
         </script>
@@ -93,7 +93,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/spork/', createProxyMiddleware({ 
-  target: 'https://robby.blue', 
+  target: 'https://robby.ml', 
   changeOrigin: true,
   pathRewrite: {
     '^/spork/': '/', // remove base path
@@ -101,4 +101,4 @@ app.use('/spork/', createProxyMiddleware({
 }));
 
 app.listen(3009);
-console.log("Sprok started -> http://localhost:3009");
+console.log("Sprok started -> http://localhost:3008");
