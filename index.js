@@ -27,7 +27,7 @@ app.post('/', (req, res) => {
     req.session.loggedIn = true;
     res.redirect('/spork/');
   } else {
-    res.redirect('/');
+    res.redirect('https://spork.school');
   }
 });
 
