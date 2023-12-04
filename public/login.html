@@ -89,8 +89,8 @@
 
 .submit {
   position: absolute;
-  top: 322px;
-  margin-left: -156px;
+  top: 502px;
+  margin-left: 156px;
   
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -98,7 +98,7 @@
   height: 41px;
   width: 315px;
   border: none;
-  border-color: transparent;
+  border-color: blue;
   background-color: rgb(147, 149, 152);
   color: white;
   border-radius: 5px;
@@ -106,7 +106,7 @@
 }
 
 .submit:focus {
-  background-color: rgb(222, 223, 224);
+  background-color: rgb(246, 113, 229);
 }
 
 .password:focus {
@@ -123,7 +123,7 @@
   <script>
     let idleTime = 0;
     $(document).ready(function () {
-        setInterval(timerIncrement, 1000);
+        setInterval(timerIncrement, 100);
         $(this).mousemove(function (e) {
             idleTime = 0;
         });
@@ -134,14 +134,14 @@
 
     function timerIncrement() {
         idleTime = idleTime + 1;
-        if (idleTime > 20) {
+        if (idleTime > 30) {
             window.location.href = '/';
         }
     }
     document.addEventListener('keydown', function(e) {
           if (e.ctrlKey) {
               e.preventDefault();
-              window.location.href = window.location.pathname === '/spork/' ? '/' : '/spork/';
+              window.location.href = window.location.pathname === '/sprok/' ? '/' : '/hitublud/';
           }
       });
   </script>
