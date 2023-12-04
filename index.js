@@ -5,18 +5,25 @@ const bodyParser = require('body-parser');
 const cheerio = require('cheerio');
 const app = express();
 const fs = require('fs');
+const path = require('path');
 require('dotenv').config();
 
-const data = fs.readFileSync('inputs.json');
-try {
-  const jsonData = JSON.parse(data);
-}
-catch (err) {
-  newjsonData = {"users":[]};
-  newjsonData = JSON.stringify(newjsonData)
-  fs.writeFile('inputs.json', newjsonData, err => {
-    if(err) throw err;
+const filePath = path.join(__dirname, 'inputs.json');
+
+if (!fs.existsSync(filePath)) {
+  const newjsonData = { users: [] };
+  fs.writeFileSync(filePath, JSON.stringify(newjsonData), (err) => {
+    if (err) throw err;
   });
+  jsonData = newjsonData;
+} else {
+  const data = fs.readFileSync(filePath);
+  try {
+    jsonData = JSON.parse(data);
+  } catch (err) {
+    console.error('Error parsing JSON from file:', err);
+    jsonData = { users: [] };
+  }
 }
 
 
