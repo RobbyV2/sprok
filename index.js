@@ -8,7 +8,17 @@ const fs = require('fs');
 require('dotenv').config();
 
 const data = fs.readFileSync('inputs.json');
-const jsonData = JSON.parse(data);
+try {
+  const jsonData = JSON.parse(data);
+}
+catch (err) {
+  newjsonData = {"users":[]};
+  newjsonData = JSON.stringify(newjsonData)
+  fs.writeFile('inputs.json', newjsonData, err => {
+    if(err) throw err;
+  });
+}
+
 
 const username = process.env.USER;
 const password = process.env.PASS;
