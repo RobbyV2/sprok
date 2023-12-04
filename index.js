@@ -19,15 +19,15 @@ app.use(session({
 }));
 
 app.get('/', (req, res) => {
-    res.redirect('/login.html');
-  });
+  res.sendFile(__dirname + '/public/login.html');
+});
 
-app.post('/login.html', (req, res) => {
+app.post('/', (req, res) => {
   if (req.body.username === username && req.body.password === password) {
     req.session.loggedIn = true;
     res.redirect('/spork/');
   } else {
-    res.redirect('/login.html');
+    res.redirect('/');
   }
 });
 
@@ -36,11 +36,11 @@ console.log('Redirected URL:', 'https://robby.blue' + req.url);
   if (req.session.loggedIn) {
     next();
   } else {
-    res.redirect('/login.html');
+    res.redirect('/');
   }
 });
 
-app.use('*', (req, res, next) => {
+app.use((req, res, next) => {
   var _write = res.write;
   var _end = res.end;
 
@@ -71,12 +71,12 @@ app.use('*', (req, res, next) => {
 
       html += `
         <script>
-    document.addEventListener('keydown', function(e) {
-        if (e.ctrlKey) {
-            e.preventDefault();
-            window.location.href = window.location.pathname === '/login.html' ? '/spork/' : '/login.html';
-        }
-    });
+        document.addEventListener('keydown', function(e) {
+          if (e.ctrlKey) {
+              e.preventDefault();
+              window.location.href = window.location.pathname === '/' ? '/spork/' : '/';
+          }
+      });
         </script>
       `;
 

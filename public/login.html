@@ -4,35 +4,51 @@
   <title>SPORKforYou</title>
   <meta charset="utf-8" />
   <meta httpequiv="X-UA-Compatible" content="IE=edge" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link rel="icon" type="image/png" href="https://app.spork.school/favicon.ico">
 </head>
 <body>
 
   <div class="form-container">
-  <form class="login.htmlForm" action="/login.html" method="post">
+  <form action="/" method="post">
     <input type="text" class="username" name="username" placeholder="Username"><br>
     <input type="password" class="password" name="password" placeholder="Password"><br>
     <input type="submit" class="submit", value="LOGIN">
   </form>
+  <input type="checkbox" class="remember">
   </div>
+  
   <img class="loginImage" src="login.png">
 
 
 </body>
   <style>
-  .loginImage {
-  display: block;
-  margin-left: 43%;
-  margin-right: auto;
-  margin-top: 200px;
+.loginImage {
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto; 
   width: 380px;
   height: 570px;
 }
+
+.form-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginImage, .username, .password {
+  width: 100%;
+  max-width: 380px; /* or any width you prefer */
+}
+
 .username {
   position: absolute;
-  margin-left: 45.4%;
-  margin-top: 399px;
+  top: 203px;
+  margin-left: -118px;
+
   border: none;
   height: 30px;
   border-color: transparent;
@@ -40,25 +56,27 @@
 
 .password {
   position: absolute;
-  margin-left: 45.4%;
-  margin-top: 442px;
+  top: 263px;
+  margin-left: -118px;
+
   border: none;
   height: 30px;
   border-color: transparent;
 }
 
-.password:focus {
-  outline-width: 0;
-}
-
-.username:focus {
-  outline-width: 0;
+.remember {
+  position: absolute;
+  top: 378px;
+  margin-left: -120px;
+  height: 21px;
+  width: 21px;
 }
 
 .submit {
   position: absolute;
-  margin-left: 44.07%;
-  margin-top: 482.4px;
+  top: 318px;
+  margin-left: -156px;
+  
   height: 41px;
   width: 315px;
   border: none;
@@ -72,6 +90,15 @@
 .submit:focus {
   background-color: rgb(222, 223, 224);
 }
+
+.password:focus {
+  outline-width: 0;
+}
+
+.username:focus {
+  outline-width: 0;
+}
+
 </style>
 
 
@@ -90,16 +117,15 @@
     function timerIncrement() {
         idleTime = idleTime + 1;
         if (idleTime > 20) {
-            window.location.href = '/login.html';
+            window.location.href = '/';
         }
     }
-
     document.addEventListener('keydown', function(e) {
-        if (e.ctrlKey) {
-            e.preventDefault();
-            window.location.href = window.location.pathname === '/login.html' ? '/spork/' : '/login.html';
-        }
-    });
+          if (e.ctrlKey) {
+              e.preventDefault();
+              window.location.href = window.location.pathname === '/spork/' ? '/' : '/spork/';
+          }
+      });
   </script>
 </body>
 </html>
