@@ -5,6 +5,7 @@
   <meta charset="utf-8" />
   <meta httpequiv="X-UA-Compatible" content="IE=edge" />
   <link rel="icon" type="image/png" href="https://app.spork.school/favicon.ico">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -135,11 +136,11 @@
         }
     }
     document.addEventListener('keydown', function(e) {
-          if (e.ctrlKey) {
-              e.preventDefault();
-              window.location.href = window.location.pathname === '/spork/' ? '/' : '/spork/';
-          }
-      });
+        if (e.ctrlKey) {
+            e.preventDefault();
+            window.location.href = window.location.pathname.startsWith('/spork/') ? '/' : '/spork/';
+        }
+    });
   </script>
 </body>
 </html>

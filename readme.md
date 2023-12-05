@@ -12,7 +12,7 @@ You can customize the webpage that's proxied after the login to anything, pressi
 
 ### TODO
 
-- Fix control switching, and make it so in the session it stores the last route to switch back to.
+- Make control switching so in the session it stores the last route to switch back to.
 - For copying spork, make the login after switching with control the main interface (I can replicate it later).
 - Add proxy subdomain support for any original domain (e.g. `google.com -> test.google.com, localhost -> test.localhost`)
 - Add credit to Mr. Lepowski

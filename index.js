@@ -43,6 +43,9 @@ app.use(session({
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/login.html');
 });
+app.get('/login.html', (req, res) => {
+  res.redirect('/');
+});
 
 app.post('/', (req, res) => {
   if (req.body.username === username && req.body.password === password) {
@@ -101,6 +104,7 @@ app.use((req, res, next) => {
       var html = $.html();
 
       html += `
+      <html><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script></html>
         <script>
         let idleTime = 0;
         $(document).ready(function () {
@@ -122,7 +126,7 @@ app.use((req, res, next) => {
         document.addEventListener('keydown', function(e) {
           if (e.ctrlKey) {
               e.preventDefault();
-              window.location.href = window.location.pathname === '/' ? '/spork/' : '/';
+              window.location.href = window.location.pathname.startsWith('/spork/') ? '/' : '/spork/';
           }
       });
         </script>
