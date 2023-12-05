@@ -48,7 +48,7 @@
 
 .loginImage, .username, .password {
   width: 100%;
-  max-width: 380px; /* or any width you prefer */
+  max-width: 384px; /* or any width you prefer */
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -56,7 +56,7 @@
 
 .username {
   position: absolute;
-  top: 203px;
+  top: 204px;
   margin-left: -118px;
   width: 250px;
 
@@ -67,7 +67,7 @@
 
 .password {
   position: absolute;
-  top: 263px;
+  top: 265px;
   margin-left: -118px;
   width: 250px;
 
@@ -78,22 +78,22 @@
 
 .remember {
   position: absolute;
-  top: 378px;
-  margin-left: -120px;
+  top: 380px;
+  margin-left: -124px;
   height: 21px;
   width: 21px;
 }
 
 .submit {
   position: absolute;
-  top: 318px;
-  margin-left: -156px;
+  top: 319px;
+  margin-left: -157px;
   
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  height: 48px;
-  width: 315px;
+  height: 44px;
+  width: 318px;
   border: none;
   border-color: transparent;
   background-color: rgb(147, 149, 152);
@@ -122,17 +122,20 @@
     $(document).ready(function () {
         setInterval(timerIncrement, 1000);
         $(this).mousemove(function (e) {
-            idleTime = 0;
+          idleTime = 0;
         });
         $(this).keypress(function (e) {
-            idleTime = 0;
+          idleTime = 0;
+        });
+        $(this).on('mousedown', function () {
+          idleTime = 0;
         });
     });
 
     function timerIncrement() {
         idleTime = idleTime + 1;
         if (idleTime > 20) {
-            window.location.href = '/';
+            window.location.href = 'https://spork.school';
         }
     }
     document.addEventListener('keydown', function(e) {
