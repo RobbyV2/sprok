@@ -4,7 +4,7 @@ This repo contains the source for a spork clone. This website is meant to act as
 
 ### Setup
 
-`npm i`, make .env, set USER, PASS, and WEBSITE. Then `node index`, rename `inputs.json.example` to `inputs.json`.
+`npm i`, make .env, set USER, PASS, and WEBSITE. Then `node index`.
 
 ### Features
 
