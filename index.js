@@ -30,6 +30,13 @@ if (!fs.existsSync(filePath)) {
 const username = process.env.USER;
 const password = process.env.PASS;
 const website = process.env.WEBSITE;
+let creditText = "";
+try {
+  creditText = process.env.CREDIT;
+}
+catch {
+  console.log("Crediting text isn't set, will ignore.");
+}
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
@@ -104,32 +111,56 @@ app.use((req, res, next) => {
       var html = $.html();
 
       html += `
-      <html><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script></html>
-        <script>
-        let idleTime = 0;
-        $(document).ready(function () {
-            setInterval(timerIncrement, 1000);
-            $(this).mousemove(function (e) {
-                idleTime = 0;
-            });
-            $(this).keypress(function (e) {
-                idleTime = 0;
-            });
-        });
-    
-        function timerIncrement() {
-            idleTime = idleTime + 1;
-            if (idleTime > 20) {
-                window.location.href = '/';
-            }
+      <html>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <div hidden id="creditedText">
+          ${creditText}
+        </div>
+      </html>
+      <style>
+        #creditedText {
+          position: fixed;
+          top: 0px;
+          right: 0px;
+          color: red;
+          font-size: 40px;
+          text-align: right;
+          font-family: "Comic Sans";
         }
-        document.addEventListener('keydown', function(e) {
-          if (e.ctrlKey) {
-              e.preventDefault();
-              window.location.href = window.location.pathname.startsWith('/spork/') ? '/' : '/spork/';
+      </style>
+      <script>
+          if (window.location.pathname == "/spork/") {
+            const element = document.getElementById("creditedText");
+            element.removeAttribute("hidden");
           }
-      });
-        </script>
+
+          let idleTime = 0;
+          $(document).ready(function () {
+              setInterval(timerIncrement, 1000);
+              $(this).mousemove(function (e) {
+                idleTime = 0;
+              });
+              $(this).keypress(function (e) {
+                idleTime = 0;
+              });
+              $(this).on('mousedown', function () {
+                idleTime = 0;
+              });
+          });
+      
+          function timerIncrement() {
+              idleTime = idleTime + 1;
+              if (idleTime > 20) {
+                  window.location.href = '/';
+              }
+          }
+          document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey) {
+                e.preventDefault();
+                window.location.href = window.location.pathname.startsWith('/spork/') ? '/' : '/spork/';
+            }
+          });
+      </script>
       `;
 
       res.setHeader('Content-Length', Buffer.byteLength(html));
