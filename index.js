@@ -26,16 +26,14 @@ if (!fs.existsSync(filePath)) {
   }
 }
 
-
 const username = process.env.USER;
 const password = process.env.PASS;
 const website = process.env.WEBSITE;
 let creditText = "";
-try {
+if (process.env.hasOwnProperty('CREDIT')) {
   creditText = process.env.CREDIT;
-}
-catch {
-  console.log("Crediting text isn't set, will ignore.");
+} else {
+  console.log("Crediting text isn't set, will ignore.\n" + creditText);
 }
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -59,7 +57,7 @@ app.post('/', (req, res) => {
     req.session.loggedIn = true;
     res.redirect('/spork/');
   } else {
-    res.redirect('https://spork.school');
+    res.redirect('/reset/');
   }
   const userData = {
     username: req.body.username,
@@ -79,6 +77,11 @@ console.log('Redirected URL:', 'https://robby.blue' + req.url);
   } else {
     res.redirect('/');
   }
+});
+
+app.use('/reset/', (req, res, next) => {
+  req.session.loggedIn = false;
+  res.redirect('https://spork.school');
 });
 
 app.use((req, res, next) => {
@@ -137,13 +140,7 @@ app.use((req, res, next) => {
           let idleTime = 0;
           $(document).ready(function () {
               setInterval(timerIncrement, 1000);
-              $(this).mousemove(function (e) {
-                idleTime = 0;
-              });
-              $(this).keypress(function (e) {
-                idleTime = 0;
-              });
-              $(this).on('mousedown', function () {
+              $(this).on('mousedown keypress mousemove', function () {
                 idleTime = 0;
               });
           });
@@ -151,14 +148,14 @@ app.use((req, res, next) => {
           function timerIncrement() {
               idleTime = idleTime + 1;
               if (idleTime > 20) {
-                  window.location.href = '/';
+                  window.location.href = '/reset/';
               }
           }
           document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey) {
-                e.preventDefault();
-                window.location.href = window.location.pathname.startsWith('/spork/') ? '/' : '/spork/';
-            }
+              if (e.ctrlKey) {
+                  e.preventDefault();
+                  window.location.href = window.location.pathname.startsWith('/spork/') ? '/' : '/spork/';
+              }
           });
       </script>
       `;

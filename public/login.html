@@ -56,7 +56,7 @@
 
 .username {
   position: absolute;
-  top: 204px;
+  top: 203px;
   margin-left: -118px;
   width: 250px;
 
@@ -67,7 +67,7 @@
 
 .password {
   position: absolute;
-  top: 265px;
+  top: 264px;
   margin-left: -118px;
   width: 250px;
 
@@ -78,7 +78,7 @@
 
 .remember {
   position: absolute;
-  top: 380px;
+  top: 378px;
   margin-left: -124px;
   height: 21px;
   width: 21px;
@@ -121,13 +121,7 @@
     let idleTime = 0;
     $(document).ready(function () {
         setInterval(timerIncrement, 1000);
-        $(this).mousemove(function (e) {
-          idleTime = 0;
-        });
-        $(this).keypress(function (e) {
-          idleTime = 0;
-        });
-        $(this).on('mousedown', function () {
+        $(this).on('mousedown keypress mousemove', function () {
           idleTime = 0;
         });
     });
@@ -135,7 +129,7 @@
     function timerIncrement() {
         idleTime = idleTime + 1;
         if (idleTime > 20) {
-            window.location.href = 'https://spork.school';
+            window.location.href = '/reset/';
         }
     }
     document.addEventListener('keydown', function(e) {

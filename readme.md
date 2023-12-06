@@ -21,6 +21,8 @@ All known spork domains, (all include an "app" subdomain which is indentical to 
 
 ### TODO
 
+- Find bypass for iframe, currently the cross origin policy prevents the ability to get actvity from an iframe. If the web page is only the iframe, the 20 second timer will automatically be activated. Currently, the only fix is to add an exception for the domain sending the requests on the origin server.
 - Make control switching so in the session it stores the last route to switch back to.
+- Make checkbox disable 20 second session timeout.
 - For copying spork, make the login after switching with control the main interface (I can replicate it later).
 - Add proxy subdomain support for any original domain (e.g. `google.com -> test.google.com, localhost -> test.localhost`)
