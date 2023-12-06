@@ -137,20 +137,6 @@ app.use((req, res, next) => {
             element.removeAttribute("hidden");
           }
 
-          let idleTime = 0;
-          $(document).ready(function () {
-              setInterval(timerIncrement, 1000);
-              $(this).on('mousedown keypress mousemove', function () {
-                idleTime = 0;
-              });
-          });
-      
-          function timerIncrement() {
-              idleTime = idleTime + 1;
-              if (idleTime > 20) {
-                  window.location.href = '/reset/';
-              }
-          }
           document.addEventListener('keydown', function(e) {
               if (e.ctrlKey) {
                   e.preventDefault();
