@@ -21,6 +21,8 @@ All known spork domains, (all include an "app" subdomain which is indentical to 
 
 ### TODO
 
+- Make inputs.json hosted on the website once logged in with a special password
+- Remake array login
 - Find bypass for iframe, currently the cross origin policy prevents the ability to get actvity from an iframe. If the web page is only the iframe, the 20 second timer will automatically be activated. Currently, the only fix is to add an exception for the domain sending the requests on the origin server.
 - Make control switching so in the session it stores the last route to switch back to.
 - Make checkbox disable 20 second session timeout.
