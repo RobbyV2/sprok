@@ -143,7 +143,7 @@ app.use((req, res, next) => {
           document.addEventListener('keydown', function(e) {
               if (e.ctrlKey) {
                   e.preventDefault();
-                  window.location.href = window.location.pathname.startsWith('/spork/') ? '/' : '/spork/';
+                  window.location.href = '/schedule/';
               }
           });
       </script>
