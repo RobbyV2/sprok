@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<!-- https://spork.school/schedule -->
+  
+<head>
+  <title>SPORKforYou</title>
+  <meta charset="utf-8" />
+  <meta httpequiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="icon" type="image/png" href="https://app.spork.school/favicon.ico">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="name">User, Spork</div>
+    <img class="barImage" id="bar" src="days/mon.png">
+    <img class="loginImage" src="interface.png">
+</body>
+<style>
+  .loginImage {
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto; 
+    width: 100vw;
+    height: 100vh;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  .barImage {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 10vh;
+    width: 100vw;
+    height: 4vh;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  .name {
+    width: 6vw;
+    background-color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    top: 7.7vh;
+    left: 93vw;
+  }
+</style>
+<script>
+  let bar="";
+  $(document).ready(function () {
+    let bar="days/mon.png";
+    switch (new Date().getDay()) {
+      case 1:
+        bar = "days/mon.png";
+        break;
+      case 2:
+        bar = "days/tue.png";
+        break;
+      case 3:
+        bar = "days/wed.png";
+        break;
+      case 4:
+        bar = "days/thu.png";
+        break;
+      default:
+        bar = "days/fri.png";
+    }
+    document.getElementById("bar").src=bar;
+  });
+  
+  document.addEventListener('keydown', function(e) {
+    if (e.ctrlKey) {
+      e.preventDefault();
+      window.location.href = '/spork/';
+    }
+  });
+</script>
+</html>
