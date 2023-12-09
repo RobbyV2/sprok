@@ -51,6 +51,9 @@ app.get('/', (req, res) => {
 app.get('/login.html', (req, res) => {
   res.redirect('/');
 });
+app.get('/schedule/', (req, res) => {
+  res.sendFile(__dirname + '/public/interface.html');
+});
 
 app.post('/', (req, res) => {
   if (req.body.username === username && req.body.password === password) {
